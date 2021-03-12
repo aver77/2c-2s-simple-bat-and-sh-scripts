@@ -1,0 +1,8 @@
+set "Mypath=D:\temp"
+set empty=0
+
+for /r "%Mypath%" /d %%F in (.) do (
+dir /b "%%F" | findstr "^" > nul || set /a empty+=1
+)
+echo %empty%
+pause

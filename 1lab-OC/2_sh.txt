@@ -1,0 +1,20 @@
+PATH1="/usr/bin"
+PATH2="/usr/lib"
+PATH3="/share/surname"
+
+
+FILE1="file"
+FILE2="file.lib"
+FILE3="file.res"
+
+cp $FILE1 $PATH1
+chown .user $PATH1/$FILE1
+chmod g+x $PATH1/$FILE1
+
+cp $FILE2 $PATH2
+
+mkdir -p $PATH3
+cp $FILE3 $PATH3
+
+echo "$PATH1/$FILE1" >> $PATH3/$FILE3
+echo "$PATH2/$FILE2" >> $PATH3/$FILE3
