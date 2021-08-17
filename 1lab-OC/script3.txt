@@ -1,0 +1,26 @@
+@echo off
+:: % % переменная, команда > [путь] имя - результат выполнения команды выводится во внешний файл
+:: двоеточие значит, что дальше данные вводит пользователь, либо они считываются
+
+set /p name=name of the patient :             ::задаем пациенту имя с клавиатуры
+mkdir "C:\testflolder\Patientlist\%name%"     ::заносим его в список (first)
+
+set /p directory=path to file:                       
+copy %directory% C:\testflolder\Patientlist\%name%     
+break >"C:\testflolder\Patientlist\%name%\%name%.txt"
+set /p age=age of the patient :
+@echo %age% >"C:\testflolder\Patientlist\%name%\Age.txt"
+set /p area=area of residence of the patient :
+@echo %area%  >"C:\testflolder\Patientlist\%name%\Area of residence.txt"
+set /p dep=department of the patient :
+@echo %dep%  >"C:\testflolder\Patientlist\%name%\Department.txt"
+set /p dia=diagnosis of the patient :
+@echo %dia%  >"C:\testflolder\Patientlist\%name%\Diagnosis.txt"
+
+:: ссылка в первой директории на вторую
+mklink  C:\testflolder\Patientlist2\Age\%age%\%name%  C:\testflolder\Patientlist\%name%
+mklink C:\testflolder\Patientlist2\Area_of_residence\%area%\%name% C:\testflolder\Patientlist\%name%
+mklink  C:\testflolder\Patientlist2\Department\%dep%\%name% C:\testflolder\Patientlist\%name%
+mklink  C:\testflolder\Patientlist2\Diagnosis\%dia%\%name% C:\testflolder\Patientlist\%name% 
+pause
+exit
